@@ -1,0 +1,77 @@
+.collection-list {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 30em;
+}
+.collection-list li {
+  position: relative;
+  cursor: pointer;
+  background-color: #EEE;
+  margin: 0.5em;
+  height: 7.0em;
+  border-radius: 4px;
+}
+
+.collection-list li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .2em;
+}
+
+.collection-list a {
+  color: #888;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  width: 250px;
+}
+
+.collection-list a:hover {
+  color:#607D8B;
+}
+
+.collection-list .collbadgetop {
+  color: white;
+  background-color: #607D8B;
+  position: relative;
+  left: -2px;
+  top: -2px;
+  height: 2.8em;
+  min-width: 40px;
+  text-align: center;
+  border-radius: 4px 0 0 0;
+}
+
+.collection-list .collbadgebot {
+  background-color: #607D8B;
+  position: relative;
+  left: -2px;
+  top: -4px;
+  min-width: 40px;
+  height: 2.5em;
+  border-radius: 0 0 0 4px;
+}
+
+.collection-list .collname {
+  font-weight: bold;
+  font-size: big;
+  position: relative;
+  left: 20px;
+  top: 5px;
+  color: black;
+  text-align: left;
+}
+
+.collection-list .collstat {
+  font-size: small;
+  position: relative;
+  left: 30px;
+  top: -8px;
+  text-align: left;
+}
+
+.collection-list .collpict {
+//  width: 30px;
+//  height: 30px;
+}
