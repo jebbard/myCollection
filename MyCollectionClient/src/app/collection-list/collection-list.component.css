@@ -2,14 +2,13 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 30em;
+  width: 29em;
 }
 .collection-list li {
   position: relative;
   cursor: pointer;
   background-color: #EEE;
   margin: 0.5em;
-  height: 7.0em;
   border-radius: 4px;
 }
 
@@ -31,47 +30,62 @@
   color:#607D8B;
 }
 
-.collection-list .collbadgetop {
-  color: white;
-  background-color: #607D8B;
-  position: relative;
-  left: -2px;
-  top: -2px;
-  height: 2.8em;
-  min-width: 40px;
-  text-align: center;
-  border-radius: 4px 0 0 0;
+div.table {
+  display: table;
 }
 
-.collection-list .collbadgebot {
-  background-color: #607D8B;
+div.cell {
+  display: table-cell;
+}
+
+div.row {
+  display: table-row;
+}
+
+div.nameCell {
+  display: table-cell;
+  color: black;
+  padding: 10px 0 0 10px;
+  margin: 0;
+  font-weight: bold;
+  font-size: large;
+  text-align: left;
+  vertical-align: top;
+  min-width: 17em;
+}
+
+div.statCell {
+  display: table-cell;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  vertical-align: top;
   position: relative;
-  left: -2px;
-  top: -4px;
-  min-width: 40px;
-  height: 2.5em;
+  left: 25px;
+  top: -18px;
+  min-width: 17em;
+}
+
+div.badgeTopCell {
+  display: table-cell;
+  color: white;
+  background-color: #607D8B;
+  min-width: 3em;
+  text-align: center;
+  border-radius: 4px 0 0 0;
+  vertical-align: center;
+}
+
+div.badgeBotCell {
+  display: table-cell;
+  background-color: #607D8B;
+  min-width: 3em;
   border-radius: 0 0 0 4px;
 }
 
-.collection-list .collname {
-  font-weight: bold;
-  font-size: big;
+img {
+  border: 5px solid #607D8B;
+  border-radius: 12px;
   position: relative;
-  left: 20px;
-  top: 5px;
-  color: black;
-  text-align: left;
-}
-
-.collection-list .collstat {
-  font-size: small;
-  position: relative;
-  left: 30px;
-  top: -8px;
-  text-align: left;
-}
-
-.collection-list .collpict {
-//  width: 30px;
-//  height: 30px;
+  top: 10px;
 }
