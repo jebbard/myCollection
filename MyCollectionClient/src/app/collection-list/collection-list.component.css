@@ -2,7 +2,7 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 29em;
+  width: 25em;
 }
 .collection-list li {
   position: relative;
@@ -51,19 +51,22 @@ div.nameCell {
   font-size: large;
   text-align: left;
   vertical-align: top;
-  min-width: 17em;
+  min-width: 14em;
+  max-width: 14em;
 }
 
 div.statCell {
   display: table-cell;
+  font-size: small;
   padding: 0;
   margin: 0;
   text-align: left;
   vertical-align: top;
   position: relative;
-  left: 25px;
+  left: 20px;
   top: -18px;
-  min-width: 17em;
+  min-width: 14em;
+  max-width: 14em;
 }
 
 div.badgeTopCell {
@@ -73,7 +76,8 @@ div.badgeTopCell {
   min-width: 3em;
   text-align: center;
   border-radius: 4px 0 0 0;
-  vertical-align: center;
+  padding-top: 8px;
+  vertical-align: top;
 }
 
 div.badgeBotCell {
@@ -83,9 +87,54 @@ div.badgeBotCell {
   border-radius: 0 0 0 4px;
 }
 
+button {
+  font-family: Arial;
+  font-weight: bold;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+  vertical-align: middle;
+}
+
+button.new {
+  margin-left: 0.5em;
+  width: 6em;
+  height: 2.5em;
+}
+
+button.del {
+  margin: -12px;
+  font-size: large;
+  max-width: 2em;
+  min-width: 2em;
+  max-height: 2em;
+  min-height: 2em;
+  position: relative;
+  left: 18px;
+  top: -18px;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+button.clear {
+  color: #888;
+  margin-bottom: 12px;
+}
+
 img {
+  margin: -8px;
   border: 5px solid #607D8B;
   border-radius: 12px;
   position: relative;
   top: 10px;
+  left: 4px;
 }

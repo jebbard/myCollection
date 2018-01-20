@@ -23,7 +23,7 @@ export class CollectionService {
   getCollections(): Observable<Collection[]> {
     return this.http.get<Collection[]>(this.collectionsUrl)
       .pipe(
-        tap(heroes => this.log(`fetched collections`)),
+        tap(collections => this.log(`fetched collections`)),
         catchError(this.handleError('getCollections', [])));
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Collection } from '../services/collections/collection'
-import { COLLECTIONS } from './mock-collections'
+import { Collection } from '../services/collections/collection';
+import {CollectionService} from '../services/collections/collection.service';
 
 @Component({
   selector: 'app-collection-list',
@@ -9,11 +9,20 @@ import { COLLECTIONS } from './mock-collections'
 })
 export class CollectionListComponent implements OnInit {
 
-  collections = COLLECTIONS;
+  collections: Collection[];
 
-  constructor() { }
+  constructor(private collectionService: CollectionService) { }
 
   ngOnInit() {
+    this.getCollections();
   }
 
+  getCollections(): void {
+    this.collectionService.getCollections().subscribe(collections => this.collections = collections);
+  }
+
+  delete(collection: Collection): void {
+    this.collections = this.collections.filter(c => c !== collection);
+    this.collectionService.deleteCollection(collection).subscribe();
+  }
 }
