@@ -10,12 +10,14 @@ import {MessagesComponent} from './messages/messages.component';
 import {MessageService} from './services/messages/message.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
+import { CollectionDetailsComponent } from './collection-details/collection-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CollectionListComponent,
-    MessagesComponent
+    MessagesComponent,
+    CollectionDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { AppRoutingModule } from './/app-routing.module';
       InMemoryDataService, {dataEncapsulation: false}
     )],
   providers: [CollectionService, MessageService],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

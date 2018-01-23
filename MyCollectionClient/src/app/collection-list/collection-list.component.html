@@ -1,7 +1,7 @@
 <h2>My Collections</h2>
 <button class="new" title="New collection">New</button>
 <ul class="collection-list">
-  <li *ngFor="let collection of collections">
+  <li *ngFor="let collection of collections" title="Open collection" (click)="toggleDetails(collection)">
     <div class="table">
       <div class="row">
       <div class="badgeTopCell">{{collection.id}}</div>
@@ -16,7 +16,8 @@
         <div class="cell"></div>
       </div>
     </div>
-
+    <app-collection-details [collection]="collection" [openedCollection]="openedCollection"></app-collection-details>
+    <!--(click)="delete(collection)"-->
     <!--<a routerLink="/detail/{{collection.id}}">-->
     <!--</a>-->
   </li>
