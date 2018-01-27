@@ -1,6 +1,6 @@
 <div *ngIf="collectionView.mode!=0" class="detailsDiv">
-  <button class="browse">Browse</button>
-  <button (click)="synchCollection()">Sync</button>
+  <button class="browse" [disabled]="collectionView.mode!=1">Browse</button>
+  <button (click)="synchCollection()" [disabled]="collectionView.mode!=1">Sync</button>
   <button *ngIf="collectionView.mode==1" (click)="switchToEditMode()">Edit</button>
   <button *ngIf="collectionView.mode==2" (click)="saveChangedCollection()">Save</button>
   <button *ngIf="collectionView.mode==3" (click)="createNewCollection()">Create</button>

@@ -16,6 +16,12 @@ button.browse:hover {
   background-color: #6699CC;
 }
 
+button.browse:disabled {
+  background-color: #4477AA;
+  color: #aaa;
+  cursor: auto;
+}
+
 label {
   display: table-cell;
   width: 5em;

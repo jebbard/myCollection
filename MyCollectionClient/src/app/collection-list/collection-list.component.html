@@ -1,10 +1,18 @@
-<h2>My Collections</h2>
-<button class="new" title="New collection" (click)="newCollection()">New</button>
-<ul class="collection-list">
+<div *ngIf="newCollectionView">
+  <h2>Create New Collection</h2>
+  <app-collection-view [collectionView]="newCollectionView"
+                       (deleteColEvent)="notifyDeletedCollection($event)"
+                       (toggleColEvent)="notifyToggledCollection($event)"></app-collection-view>
+</div>
+<div *ngIf="!newCollectionView">
+  <h2>My Collections</h2>
+  <button class="new" title="New collection" (click)="newCollection()">New</button>
+  <ul class="collection-list">
 
-  <li *ngFor="let collectionView of collectionViews">
-    <app-collection-view [collectionView]="collectionView"
-                         (deleteColEvent)="notifyDeletedCollection($event)"
-                         (toggleColEvent)="notifyToggledCollection($event)"></app-collection-view>
-  </li>
-</ul>
+    <li *ngFor="let collectionView of collectionViews">
+      <app-collection-view [collectionView]="collectionView"
+                           (deleteColEvent)="notifyDeletedCollection($event)"
+                           (toggleColEvent)="notifyToggledCollection($event)"></app-collection-view>
+    </li>
+  </ul>
+</div>

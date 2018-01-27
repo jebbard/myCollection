@@ -30,4 +30,18 @@ export class CollectionDetailsComponent implements OnInit {
     this.collectionView.mode = CollectionViewMode.VIEW;
   }
 
+  createNewCollection(): void {
+    // Todo
+    this.collectionView.mode = CollectionViewMode.VIEW;
+  }
+
+  closeCollection(): void {
+    this.collectionView.mode = CollectionViewMode.CLOSED;
+  }
+
+  discardChangedOrNewCollection(): void {
+    // Todo
+    this.collectionView.mode = CollectionViewMode.VIEW;
+  }
+
 }

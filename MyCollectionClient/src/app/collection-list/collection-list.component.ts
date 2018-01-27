@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CollectionService} from '../services/collections/collection.service';
 import {CollectionViewMode} from '../collection-view/collection-view-mode';
 import {CollectionView} from '../collection-view/collection-view';
+import {Collection} from '../services/collections/collection';
 
 @Component({
   selector: 'app-collection-list',
@@ -9,6 +10,8 @@ import {CollectionView} from '../collection-view/collection-view';
   styleUrls: ['./collection-list.component.css']
 })
 export class CollectionListComponent implements OnInit {
+
+  newCollectionView: CollectionView;
 
   collectionViews: CollectionView[];
 
@@ -62,9 +65,8 @@ export class CollectionListComponent implements OnInit {
   }
 
   newCollection(): void {
-    // var newCollection = new Collection();
-    // newCollection.name = "<New collection>";
-    // this.collections.unshift(newCollection);
-    // this.openedCollection = newCollection;
+    const coll = new Collection();
+    coll.name = "<New collection>";
+    this.newCollectionView = new CollectionView(coll, CollectionViewMode.NEW);
   }
 }
