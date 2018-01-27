@@ -1,24 +1,10 @@
 <h2>My Collections</h2>
-<button class="new" title="New collection">New</button>
+<button class="new" title="New collection" (click)="newCollection()">New</button>
 <ul class="collection-list">
-  <li *ngFor="let collection of collections" title="Open collection" (click)="toggleDetails(collection)">
-    <div class="table">
-      <div class="row">
-      <div class="badgeTopCell">{{collection.id}}</div>
-      <div class="nameCell">{{collection.name}}</div>
-      <div class="cell"><img src="assets/images/homeicon.png" alt="s"></div>
-      </div>
-      <div class="row">
-        <div class="badgeBotCell">
-          <button class="del" title="Delete collection" (click)="delete(collection)">x</button>
-        </div>
-        <div class="statCell">{{collection.statisticsSummary}}</div>
-        <div class="cell"></div>
-      </div>
-    </div>
-    <app-collection-details [collection]="collection" [openedCollection]="openedCollection"></app-collection-details>
-    <!--(click)="delete(collection)"-->
-    <!--<a routerLink="/detail/{{collection.id}}">-->
-    <!--</a>-->
+
+  <li *ngFor="let collectionView of collectionViews">
+    <app-collection-view [collectionView]="collectionView"
+                         (deleteColEvent)="notifyDeletedCollection($event)"
+                         (toggleColEvent)="notifyToggledCollection($event)"></app-collection-view>
   </li>
 </ul>

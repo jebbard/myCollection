@@ -1,3 +1,24 @@
-<div *ngIf="collection==openedCollection">
-  collection-details works!
+<div *ngIf="collectionView.mode!=0" class="detailsDiv">
+  <button class="browse">Browse</button>
+  <button (click)="synchCollection()">Sync</button>
+  <button *ngIf="collectionView.mode==1" (click)="switchToEditMode()">Edit</button>
+  <button *ngIf="collectionView.mode==2" (click)="saveChangedCollection()">Save</button>
+  <button *ngIf="collectionView.mode==3" (click)="createNewCollection()">Create</button>
+  <button *ngIf="collectionView.mode==1" (click)="closeCollection()">Close</button>
+  <button *ngIf="collectionView.mode==2||collectionView.mode==3" (click)="discardChangedOrNewCollection()">Discard</button>
+  <h3>Basic properties</h3>
+  <div class="inputDiv">
+    <label>Name:</label>
+    <input [(ngModel)]="collectionView.collection.name" placeholder="name"/>
+  </div>
+  <div class="inputDiv">
+    <label>Root:</label>
+    <input [(ngModel)]="collectionView.collection.localRootPath" placeholder="path"/>
+  </div>
+  <div class="inputDiv">
+    <label>Picture:</label>
+    <input [(ngModel)]="collectionView.collection.thumbnailLink" placeholder="picture"/>
+  </div>
+  <h3>Rules</h3>
+  <h3>Statistics</h3>
 </div>

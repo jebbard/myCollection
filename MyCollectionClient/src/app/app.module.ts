@@ -11,13 +11,15 @@ import {MessageService} from './services/messages/message.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { CollectionDetailsComponent } from './collection-details/collection-details.component';
+import { CollectionViewComponent } from './collection-view/collection-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CollectionListComponent,
     MessagesComponent,
-    CollectionDetailsComponent
+    CollectionDetailsComponent,
+    CollectionViewComponent
   ],
   imports: [
     BrowserModule,

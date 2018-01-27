@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Collection } from '../services/collections/collection';
+import {Component, OnInit, Input} from '@angular/core';
+import {CollectionView} from '../collection-view/collection-view';
+import {CollectionViewMode} from '../collection-view/collection-view-mode';
 
 @Component({
   selector: 'app-collection-details',
@@ -8,12 +9,25 @@ import { Collection } from '../services/collections/collection';
 })
 export class CollectionDetailsComponent implements OnInit {
 
-  @Input() collection: Collection;
-  @Input() openedCollection: Collection;
+  @Input() collectionView: CollectionView;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  synchCollection(): void {
+    // Todo
+  }
+
+  switchToEditMode(): void {
+    this.collectionView.mode = CollectionViewMode.EDIT;
+  }
+
+  saveChangedCollection(): void {
+    // Todo
+    this.collectionView.mode = CollectionViewMode.VIEW;
   }
 
 }
