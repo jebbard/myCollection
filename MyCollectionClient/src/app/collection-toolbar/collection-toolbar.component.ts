@@ -1,18 +1,18 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {CollectionView} from '../collection-view/collection-view';
-import {CollectionViewMode} from '../collection-view/collection-view-mode';
+import { Component, OnInit, Input } from '@angular/core';
+import {CollectionView} from '../collection-list/collection-view';
+import {CollectionViewMode} from '../collection-list/collection-view-mode';
 
 @Component({
-  selector: 'app-collection-details',
-  templateUrl: './collection-details.component.html',
-  styleUrls: ['./collection-details.component.css']
+  selector: 'app-collection-toolbar',
+  templateUrl: './collection-toolbar.component.html',
+  styleUrls: ['./collection-toolbar.component.css']
 })
-export class CollectionDetailsComponent implements OnInit {
+export class CollectionToolbarComponent implements OnInit {
 
   @Input() collectionView: CollectionView;
+  @Input() isFormValid: boolean;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -40,8 +40,7 @@ export class CollectionDetailsComponent implements OnInit {
   }
 
   discardChangedOrNewCollection(): void {
-    // Todo
     this.collectionView.mode = CollectionViewMode.VIEW;
+    this.collectionView.discardChanges();
   }
-
 }

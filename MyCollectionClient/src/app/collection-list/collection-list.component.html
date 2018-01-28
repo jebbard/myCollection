@@ -1,18 +1,26 @@
-<div *ngIf="newCollectionView">
+<div *ngIf="newCollectionView && newCollectionView.mode==3">
   <h2>Create New Collection</h2>
-  <app-collection-view [collectionView]="newCollectionView"
-                       (deleteColEvent)="notifyDeletedCollection($event)"
-                       (toggleColEvent)="notifyToggledCollection($event)"></app-collection-view>
+  <app-collection-toolbar [collectionView]="newCollectionView"></app-collection-toolbar>
+  <app-collection-basics [collectionView]="newCollectionView"></app-collection-basics>
+  <app-collection-rules [collectionView]="newCollectionView"></app-collection-rules>
 </div>
-<div *ngIf="!newCollectionView">
+<div *ngIf="!newCollectionView || newCollectionView.mode != 3">
   <h2>My Collections</h2>
   <button class="new" title="New collection" (click)="newCollection()">New</button>
   <ul class="collection-list">
 
     <li *ngFor="let collectionView of collectionViews">
-      <app-collection-view [collectionView]="collectionView"
-                           (deleteColEvent)="notifyDeletedCollection($event)"
-                           (toggleColEvent)="notifyToggledCollection($event)"></app-collection-view>
+      <app-collection-header [collectionView]="collectionView"
+                             (deleteColEvent)="notifyDeletedCollection($event)"
+                             (toggleColEvent)="notifyToggledCollection($event)"></app-collection-header>
+      <div *ngIf="collectionView.mode!=0" class="detailsDiv">
+        <form (ngSubmit)="saveChangedCollection(collectionView)" #collectionViewForm="ngForm">
+          <app-collection-toolbar [isFormValid]="collectionViewForm.form.valid" [collectionView]="collectionView"></app-collection-toolbar>
+          <app-collection-basics [collectionView]="collectionView"></app-collection-basics>
+          <app-collection-rules [collectionView]="collectionView"></app-collection-rules>
+          <app-collection-statistics [collectionView]="collectionView"></app-collection-statistics>
+        </form>
+      </div>
     </li>
   </ul>
 </div>

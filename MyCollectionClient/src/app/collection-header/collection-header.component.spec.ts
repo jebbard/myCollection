@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollectionViewComponent } from './collection-view.component';
+import { CollectionHeaderComponent } from './collection-header.component';
 
-describe('CollectionViewComponent', () => {
-  let component: CollectionViewComponent;
-  let fixture: ComponentFixture<CollectionViewComponent>;
+describe('CollectionHeaderComponent', () => {
+  let component: CollectionHeaderComponent;
+  let fixture: ComponentFixture<CollectionHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollectionViewComponent ]
+      declarations: [ CollectionHeaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CollectionViewComponent);
+    fixture = TestBed.createComponent(CollectionHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

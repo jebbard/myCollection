@@ -1,7 +1,3 @@
-.detailsDiv {
-  padding: 12px;
-}
-
 button {
   width: 7em;
   height: 3em;
@@ -20,20 +16,4 @@ button.browse:disabled {
   background-color: #4477AA;
   color: #aaa;
   cursor: auto;
-}
-
-label {
-  display: table-cell;
-  width: 5em;
-  vertical-align: top;
-  padding-left: 10px;
-  padding-bottom: 10px;
-}
-
-input {
-  display: table-cell;
-  width: 20em;
-}
-.inputDiv     {
-  display: table-row;
 }

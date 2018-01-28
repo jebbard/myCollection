@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CollectionService} from '../services/collections/collection.service';
-import {CollectionViewMode} from '../collection-view/collection-view-mode';
-import {CollectionView} from '../collection-view/collection-view';
+import {CollectionViewMode} from './collection-view-mode';
+import {CollectionView} from './collection-view';
 import {Collection} from '../services/collections/collection';
 
 @Component({
@@ -65,8 +65,33 @@ export class CollectionListComponent implements OnInit {
   }
 
   newCollection(): void {
-    const coll = new Collection();
-    coll.name = "<New collection>";
-    this.newCollectionView = new CollectionView(coll, CollectionViewMode.NEW);
+    this.newCollectionView = new CollectionView(new Collection(), CollectionViewMode.NEW);
+  }
+
+  synchCollection(collectionView: CollectionView): void {
+    // Todo
+  }
+
+  switchToEditMode(collectionView: CollectionView): void {
+    collectionView.mode = CollectionViewMode.EDIT;
+  }
+
+  saveChangedCollection(collectionView: CollectionView): void {
+    // Todo
+    collectionView.mode = CollectionViewMode.VIEW;
+  }
+
+  createNewCollection(collectionView: CollectionView): void {
+    // Todo
+    collectionView.mode = CollectionViewMode.VIEW;
+  }
+
+  closeCollection(collectionView: CollectionView): void {
+    collectionView.mode = CollectionViewMode.CLOSED;
+  }
+
+  discardChangedOrNewCollection(collectionView: CollectionView): void {
+    collectionView.mode = CollectionViewMode.VIEW;
+    collectionView.discardChanges();
   }
 }

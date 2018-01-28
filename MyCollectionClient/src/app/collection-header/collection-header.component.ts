@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {CollectionView} from './collection-view';
+import {CollectionView} from '../collection-list/collection-view';
 import {CollectionService} from '../services/collections/collection.service';
 import {Collection} from '../services/collections/collection';
 
 @Component({
-  selector: 'app-collection-view',
-  templateUrl: './collection-view.component.html',
-  styleUrls: ['./collection-view.component.css']
+  selector: 'app-collection-header',
+  templateUrl: './collection-header.component.html',
+  styleUrls: ['./collection-header.component.css']
 })
-export class CollectionViewComponent implements OnInit {
+export class CollectionHeaderComponent implements OnInit {
 
   @Input() collectionView: CollectionView;
   @Output() deleteColEvent: EventEmitter<CollectionView> = new EventEmitter<CollectionView>();

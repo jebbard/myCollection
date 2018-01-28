@@ -1,0 +1,19 @@
+label {
+  display: table-cell;
+  width: 5em;
+  vertical-align: top;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+input {
+  display: table-cell;
+  width: 22em;
+}
+.inputDiv     {
+  display: table-row;
+}
+
+.alert-danger {
+  width: 21em;
+}
