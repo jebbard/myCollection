@@ -1,8 +1,6 @@
 <div *ngIf="newCollectionView && newCollectionView.mode==3">
   <h2>Create New Collection</h2>
-  <app-collection-toolbar [collectionView]="newCollectionView"></app-collection-toolbar>
-  <app-collection-basics [collectionView]="newCollectionView"></app-collection-basics>
-  <app-collection-rules [collectionView]="newCollectionView"></app-collection-rules>
+  <app-collection-form [collectionView]="newCollectionView"></app-collection-form>
 </div>
 <div *ngIf="!newCollectionView || newCollectionView.mode != 3">
   <h2>My Collections</h2>
@@ -14,12 +12,7 @@
                              (deleteColEvent)="notifyDeletedCollection($event)"
                              (toggleColEvent)="notifyToggledCollection($event)"></app-collection-header>
       <div *ngIf="collectionView.mode!=0" class="detailsDiv">
-        <form (ngSubmit)="saveChangedCollection(collectionView)" #collectionViewForm="ngForm">
-          <app-collection-toolbar [isFormValid]="collectionViewForm.form.valid" [collectionView]="collectionView"></app-collection-toolbar>
-          <app-collection-basics [collectionView]="collectionView"></app-collection-basics>
-          <app-collection-rules [collectionView]="collectionView"></app-collection-rules>
-          <app-collection-statistics [collectionView]="collectionView"></app-collection-statistics>
-        </form>
+        <app-collection-form [collectionView]="collectionView"></app-collection-form>
       </div>
     </li>
   </ul>

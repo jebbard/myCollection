@@ -9,7 +9,7 @@ export class InMemoryDataService implements InMemoryDbService {
         name: 'Rock',
         localRootPath: 'E:\\Musik\\Rock\\',
         statisticsSummary: '10 albums, 203 songs',
-        thumbnailLink: '',
+        thumbnailLink: 'a',
         pictureLink: ''
       },
       {
@@ -17,10 +17,17 @@ export class InMemoryDataService implements InMemoryDbService {
         name: 'Electronic',
         localRootPath: 'E:\\Musik\\Electronic\\',
         statisticsSummary: '20 labels, 300 releases, 3045 songs',
-        thumbnailLink: '',
+        thumbnailLink: 'b',
         pictureLink: ''
       },
-      {id: 3, name: 'Andere', localRootPath: 'E:\\Musik\\Andere\\', statisticsSummary: '111 songs', thumbnailLink: '', pictureLink: ''}
+      {
+        id: 3,
+        name: 'Andere',
+        localRootPath: 'E:\\Musik\\Andere\\',
+        statisticsSummary: '111 songs, 1000 folders',
+        thumbnailLink: 'c',
+        pictureLink: ''
+      }
     ];
     return {collections};
   }

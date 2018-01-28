@@ -15,7 +15,7 @@ export class CollectionListComponent implements OnInit {
 
   collectionViews: CollectionView[];
 
-  selectedView: CollectionView;
+  openedCollectionView: CollectionView;
 
   constructor(private collectionService: CollectionService) {
   }
@@ -34,7 +34,7 @@ export class CollectionListComponent implements OnInit {
       }
 
       if (collections.length > 0) {
-        this.selectedView = this.collectionViews[0];
+        this.openedCollectionView = this.collectionViews[0];
       }
     });
   }
@@ -48,9 +48,9 @@ export class CollectionListComponent implements OnInit {
   }
 
   notifyToggledCollection(toggledView: CollectionView): void {
-    if (this.selectedView) {
-      if (this.selectedView !== toggledView) {
-        this.selectedView.mode = CollectionViewMode.CLOSED;
+    if (this.openedCollectionView) {
+      if (this.openedCollectionView !== toggledView) {
+        this.openedCollectionView.mode = CollectionViewMode.CLOSED;
         toggledView.mode = CollectionViewMode.VIEW;
       } else {
         if (toggledView.mode === CollectionViewMode.VIEW) {
@@ -60,38 +60,11 @@ export class CollectionListComponent implements OnInit {
         }
       }
 
-      this.selectedView = toggledView;
+      this.openedCollectionView = toggledView;
     }
   }
 
   newCollection(): void {
     this.newCollectionView = new CollectionView(new Collection(), CollectionViewMode.NEW);
-  }
-
-  synchCollection(collectionView: CollectionView): void {
-    // Todo
-  }
-
-  switchToEditMode(collectionView: CollectionView): void {
-    collectionView.mode = CollectionViewMode.EDIT;
-  }
-
-  saveChangedCollection(collectionView: CollectionView): void {
-    // Todo
-    collectionView.mode = CollectionViewMode.VIEW;
-  }
-
-  createNewCollection(collectionView: CollectionView): void {
-    // Todo
-    collectionView.mode = CollectionViewMode.VIEW;
-  }
-
-  closeCollection(collectionView: CollectionView): void {
-    collectionView.mode = CollectionViewMode.CLOSED;
-  }
-
-  discardChangedOrNewCollection(collectionView: CollectionView): void {
-    collectionView.mode = CollectionViewMode.VIEW;
-    collectionView.discardChanges();
   }
 }

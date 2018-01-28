@@ -1,0 +1,86 @@
+<form (ngSubmit)="submitChanges()" #collectionViewForm="ngForm">
+  <!-- NOTE: Unfortunately we cannot easily split up this form into sub-forms, because
+       then Angular's form mechanisms do not work anymore. We would need to do a lot of
+       extra work to e.g. ensure the submit button of the form is disabled if the form
+       content is invalid... -->
+  <!-- ######################################
+          Button toolbar
+       ###################################### -->
+  <button *ngIf="collectionView.mode==1 || collectionView.mode==2"
+          class="browse" [disabled]="collectionView.mode!=1">Browse
+  </button>
+  <button *ngIf="collectionView.mode==1 || collectionView.mode==2"
+          (click)="synchCollection()" [disabled]="collectionView.mode!=1">Sync
+  </button>
+  <button *ngIf="collectionView.mode==1"
+          (click)="collectionView.edit()">Edit
+  </button>
+  <button *ngIf="collectionView.mode==2" type="submit" [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty">Save</button>
+  <button *ngIf="collectionView.mode==3" type="submit" [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty">Create
+  </button>
+  <button *ngIf="collectionView.mode==1 || !collectionViewForm.form.dirty"
+          (click)="collectionView.close()">Close
+  </button>
+  <button *ngIf="(collectionView.mode==2 || collectionView.mode==3) && collectionViewForm.form.dirty"
+          (click)="collectionView.discard()">Discard
+  </button>
+
+  <!-- ######################################
+          Basic properties
+       ###################################### -->
+  <h3>Basic properties</h3>
+  <div class="inputDiv">
+    <label>Name:</label>
+    <input id="collName"
+           name="collName"
+           #collName="ngModel"
+           [(ngModel)]="collectionView.collection.name"
+           placeholder="name"
+           #input1
+           [disabled]="collectionView.mode==1"
+           required/>
+    <div [hidden]="collName.valid || collName.pristine || collName.disabled"
+         class="alert alert-danger">
+      Name must not be empty
+    </div>
+  </div>
+  <div class="inputDiv">
+    <label>Root:</label>
+    <input id="collPath"
+           name="collPath"
+           #collPath="ngModel"
+           [(ngModel)]="collectionView.collection.localRootPath"
+           placeholder="path"
+           [disabled]="collectionView.mode==1"
+           required/>
+    <div [hidden]="collPath.valid || collPath.pristine || collPath.disabled"
+         class="alert alert-danger">
+      The root path must not be empty and must be a valid absolute path
+    </div>
+  </div>
+  <div class="inputDiv">
+    <label>Picture:</label>
+    <input id="collThumb"
+           name="collThumb"
+           #collThumb="ngModel"
+           [(ngModel)]="collectionView.collection.thumbnailLink"
+           placeholder="picture"
+           [disabled]="collectionView.mode==1"
+           required/>
+    <div [hidden]="collThumb.valid || collThumb.pristine || collThumb.disabled"
+         class="alert alert-danger">
+      You must choose a picture for your collection
+    </div>
+  </div>
+
+  <!-- ######################################
+          Collection rules
+       ###################################### -->
+  <h3>Rules</h3>
+  <!-- ######################################
+          Collection statistics
+       ###################################### -->
+  <div *ngIf="collectionView.mode!=3">
+    <h3>Statistics</h3>
+  </div>
+</form>

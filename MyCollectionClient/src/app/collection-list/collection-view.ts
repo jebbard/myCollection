@@ -9,17 +9,29 @@ export class CollectionView {
   public collection: Collection;
 
   public constructor(private originalCollection: Collection, public mode: CollectionViewMode) {
-    // Clone the original collection to a copied collection
-    this.collection = new Collection();
-    this.collection.name = originalCollection.name;
-    this.collection.thumbnailLink = originalCollection.thumbnailLink;
-    this.collection.localRootPath = originalCollection.localRootPath;
-    this.collection.id = originalCollection.id;
-    this.collection.pictureLink = originalCollection.pictureLink;
-    this.collection.statisticsSummary = originalCollection.statisticsSummary;
+    this.createClonedCollection();
   }
 
-  discardChanges(): void {
+  createClonedCollection(): void {
+    this.collection = Object.assign({}, this.originalCollection);
+  }
+
+  edit(): void {
+    this.createClonedCollection();
+    this.mode = CollectionViewMode.EDIT;
+  }
+
+  save(): void {
+    this.originalCollection = this.collection;
+    this.mode = CollectionViewMode.VIEW;
+  }
+
+  discard(): void {
     this.collection = this.originalCollection;
+    this.mode = CollectionViewMode.VIEW;
+  }
+
+  close(): void {
+    this.mode = CollectionViewMode.CLOSED;
   }
 }

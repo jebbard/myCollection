@@ -11,11 +11,8 @@ import {AppRoutingModule} from './/app-routing.module';
 import {CollectionListComponent} from './collection-list/collection-list.component';
 import {CollectionService} from './services/collections/collection.service';
 import {CollectionHeaderComponent} from './collection-header/collection-header.component';
-import {CollectionBasicsComponent} from './collection-basics/collection-basics.component';
-import {CollectionRulesComponent} from './collection-rules/collection-rules.component';
-import {CollectionStatisticsComponent} from './collection-statistics/collection-statistics.component';
-import {CollectionToolbarComponent} from './collection-toolbar/collection-toolbar.component';
 import { AngularFilePickerModule } from 'angular-file-picker';
+import { CollectionFormComponent } from './collection-form/collection-form.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +20,7 @@ import { AngularFilePickerModule } from 'angular-file-picker';
     CollectionListComponent,
     MessagesComponent,
     CollectionHeaderComponent,
-    CollectionBasicsComponent,
-    CollectionRulesComponent,
-    CollectionStatisticsComponent,
-    CollectionToolbarComponent
+    CollectionFormComponent
   ],
   imports: [
     BrowserModule,
