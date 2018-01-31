@@ -6,22 +6,22 @@
   <!-- ######################################
           Button toolbar
        ###################################### -->
-  <button *ngIf="collectionView.mode==1 || collectionView.mode==2"
+  <button *ngIf="collectionView.mode==1 || collectionView.mode==2" type="button"
           class="browse" [disabled]="collectionView.mode!=1">Browse
   </button>
-  <button *ngIf="collectionView.mode==1 || collectionView.mode==2"
+  <button *ngIf="collectionView.mode==1 || collectionView.mode==2" type="button"
           (click)="synchCollection()" [disabled]="collectionView.mode!=1">Sync
   </button>
-  <button *ngIf="collectionView.mode==1"
+  <button *ngIf="collectionView.mode==1" type="button"
           (click)="collectionView.edit()">Edit
   </button>
   <button *ngIf="collectionView.mode==2" type="submit" [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty">Save</button>
   <button *ngIf="collectionView.mode==3" type="submit" [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty">Create
   </button>
-  <button *ngIf="collectionView.mode==1 || !collectionViewForm.form.dirty"
+  <button *ngIf="collectionView.mode==1 || !collectionViewForm.form.dirty" type="button"
           (click)="collectionView.close()">Close
   </button>
-  <button *ngIf="(collectionView.mode==2 || collectionView.mode==3) && collectionViewForm.form.dirty"
+  <button *ngIf="(collectionView.mode==2 || collectionView.mode==3) && collectionViewForm.form.dirty" type="button"
           (click)="collectionView.discard()">Discard
   </button>
 

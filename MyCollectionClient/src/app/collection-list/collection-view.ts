@@ -31,7 +31,20 @@ export class CollectionView {
     this.mode = CollectionViewMode.VIEW;
   }
 
+  open(): void {
+    this.mode = CollectionViewMode.VIEW;
+  }
+
   close(): void {
     this.mode = CollectionViewMode.CLOSED;
+  }
+
+  collectionChanged(col: Collection) {
+    this.originalCollection = col;
+    this.createClonedCollection();
+  }
+
+  delete(): void {
+    this.mode = CollectionViewMode.IN_DELETION;
   }
 }

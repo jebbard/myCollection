@@ -27,17 +27,20 @@ export class CollectionService {
         catchError(this.handleError('getCollections', [])));
   }
 
-  updateCollection (collection: Collection): Observable<any> {
-    return this.http.put(this.collectionsUrl, collection, httpOptions).pipe(
-      tap(_ => this.log(`updated collection id=${collection.id}`)),
-      catchError(this.handleError<any>('updateCollection'))
-    );
-  }
-
   addCollection (collection: Collection): Observable<Collection> {
     return this.http.post<Collection>(this.collectionsUrl, collection, httpOptions).pipe(
       tap((theCollection: Collection) => this.log(`added collection w/ id=${theCollection.id}`)),
       catchError(this.handleError<Collection>('addCollection'))
+    );
+  }
+
+  updateCollection (collection: Collection): Observable<Collection> {
+    const id = collection.id;
+    const url = `${this.collectionsUrl}/${id}`;
+
+    return this.http.put<Collection>(url, collection, httpOptions).pipe(
+      tap(_ => this.log(`updated collection id=${id}`)),
+      catchError(this.handleError<Collection>('updateCollection'))
     );
   }
 
@@ -48,6 +51,16 @@ export class CollectionService {
     return this.http.delete<Collection>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted collection id=${id}`)),
       catchError(this.handleError<Collection>('deleteCollection'))
+    );
+  }
+
+  synchronizeCollection (collection: Collection): Observable<Collection> {
+    const id = collection.id;
+    const url = `${this.collectionsUrl}/${id}/synchronize`;
+
+    return this.http.post<Collection>(url, httpOptions).pipe(
+      tap(_ => this.log(`synchronized collection id=${id}`)),
+      catchError(this.handleError<Collection>('synchronizeCollection'))
     );
   }
 

@@ -1,6 +1,7 @@
 <div *ngIf="newCollectionView && newCollectionView.mode==3">
   <h2>Create New Collection</h2>
-  <app-collection-form [collectionView]="newCollectionView"></app-collection-form>
+  <app-collection-form [collectionView]="newCollectionView"
+                       (addedColEvent)="notifyAddedCollection($event)"></app-collection-form>
 </div>
 <div *ngIf="!newCollectionView || newCollectionView.mode != 3">
   <h2>My Collections</h2>

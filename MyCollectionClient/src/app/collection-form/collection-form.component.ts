@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import {CollectionView} from '../collection-list/collection-view';
 import {CollectionViewMode} from '../collection-list/collection-view-mode';
+import {CollectionService} from '../services/collections/collection.service';
+import {Collection} from '../services/collections/collection';
 
 @Component({
   selector: 'app-collection-form',
@@ -10,9 +12,10 @@ import {CollectionViewMode} from '../collection-list/collection-view-mode';
 export class CollectionFormComponent implements OnInit, AfterViewInit {
 
   @Input() collectionView: CollectionView;
+  @Output() addedColEvent: EventEmitter<CollectionView> = new EventEmitter<CollectionView>();
   @ViewChild('input1') inputEl: ElementRef;
 
-  constructor() { }
+  constructor(private collectionService: CollectionService) { }
 
   ngOnInit() {
   }
@@ -22,11 +25,20 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   }
 
   synchCollection(): void {
-    // Todo: Servercall
+    this.collectionService.synchronizeCollection(this.collectionView.collection).subscribe();
   }
 
   submitChanges(): void {
-    // Todo: Servercall
+    if (this.collectionView.mode === CollectionViewMode.NEW) {
+      this.collectionService.addCollection(this.collectionView.collection).subscribe(col => this.collectionView.collectionChanged(col));
+      this.collectionView.open();
+      this.addedColEvent.emit(this.collectionView);
+    } else if (this.collectionView.mode === CollectionViewMode.EDIT) {
+      this.collectionService.updateCollection(this.collectionView.collection).subscribe(col => this.collectionView.collectionChanged(col));
+    } else {
+      alert('ILLEGAL STATE');
+    }
+
     this.collectionView.save();
   }
 }

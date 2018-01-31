@@ -7,6 +7,6 @@ export enum CollectionViewMode {
   EDIT = 2,
   /* Collection is still in creation */
   NEW = 3,
-  /* Collection was in creation but creation has been discarded */
-  NEW_DISCARDED = 4
+  /* Collection is currently deleted */
+  IN_DELETION = 4
 }

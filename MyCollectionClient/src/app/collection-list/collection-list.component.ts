@@ -45,10 +45,18 @@ export class CollectionListComponent implements OnInit {
 
   notifyAddedCollection(addedView: CollectionView): void {
     this.collectionViews.unshift(addedView);
+    this.openedCollectionView.close();
+    this.openedCollectionView = addedView;
   }
 
   notifyToggledCollection(toggledView: CollectionView): void {
     if (this.openedCollectionView) {
+      if (this.openedCollectionView.mode === CollectionViewMode.EDIT) {
+        if (confirm('This will discard any changes. Continue?')) {
+          this.openedCollectionView.discard();
+        }
+      }
+
       if (this.openedCollectionView !== toggledView) {
         this.openedCollectionView.mode = CollectionViewMode.CLOSED;
         toggledView.mode = CollectionViewMode.VIEW;

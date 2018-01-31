@@ -21,6 +21,7 @@ export class CollectionHeaderComponent implements OnInit {
 
   delete(): void {
     if (confirm('Do you really want to delete the collection? This will remove the index but does not delete the media files.')) {
+      this.collectionView.delete();
       this.collectionService.deleteCollection(this.collectionView.collection).subscribe();
       this.deleteColEvent.emit(this.collectionView);
     }
