@@ -30,15 +30,20 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
 
   submitChanges(): void {
     if (this.collectionView.mode === CollectionViewMode.NEW) {
-      this.collectionService.addCollection(this.collectionView.collection).subscribe(col => this.collectionView.collectionChanged(col));
-      this.collectionView.open();
-      this.addedColEvent.emit(this.collectionView);
+      this.collectionView.mode = CollectionViewMode.IN_CREATE;
+      this.collectionService.addCollection(this.collectionView.collection).subscribe(col => {
+        this.collectionView.collectionChanged(col);
+        this.collectionView.save();
+        this.addedColEvent.emit(this.collectionView);
+      });
     } else if (this.collectionView.mode === CollectionViewMode.EDIT) {
-      this.collectionService.updateCollection(this.collectionView.collection).subscribe(col => this.collectionView.collectionChanged(col));
+      this.collectionView.mode = CollectionViewMode.IN_UPDATE;
+      this.collectionService.updateCollection(this.collectionView.collection).subscribe(col => {
+        this.collectionView.collectionChanged(this.collectionView.collection);
+        this.collectionView.save();
+      });
     } else {
       alert('ILLEGAL STATE');
     }
-
-    this.collectionView.save();
   }
 }

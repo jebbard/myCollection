@@ -3,6 +3,7 @@ import {CollectionService} from '../services/collections/collection.service';
 import {CollectionViewMode} from './collection-view-mode';
 import {CollectionView} from './collection-view';
 import {Collection} from '../services/collections/collection';
+import {CollectionStatistics} from '../services/collections/collection-statistics';
 
 @Component({
   selector: 'app-collection-list',
@@ -73,6 +74,8 @@ export class CollectionListComponent implements OnInit {
   }
 
   newCollection(): void {
-    this.newCollectionView = new CollectionView(new Collection(), CollectionViewMode.NEW);
+    let collection = new Collection();
+    collection.statistics = new CollectionStatistics();
+    this.newCollectionView = new CollectionView(collection, CollectionViewMode.NEW);
   }
 }

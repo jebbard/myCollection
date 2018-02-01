@@ -6,23 +6,30 @@
   <!-- ######################################
           Button toolbar
        ###################################### -->
-  <button *ngIf="collectionView.mode==1 || collectionView.mode==2" type="button"
+  <button *ngIf="collectionView.mode==1 || collectionView.mode==2 || collectionView.mode==5" type="button"
           class="browse" [disabled]="collectionView.mode!=1">Browse
   </button>
-  <button *ngIf="collectionView.mode==1 || collectionView.mode==2" type="button"
+  <button *ngIf="collectionView.mode==1 || collectionView.mode==2 || collectionView.mode==5" type="button"
           (click)="synchCollection()" [disabled]="collectionView.mode!=1">Sync
   </button>
   <button *ngIf="collectionView.mode==1" type="button"
           (click)="collectionView.edit()">Edit
   </button>
-  <button *ngIf="collectionView.mode==2" type="submit" [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty">Save</button>
-  <button *ngIf="collectionView.mode==3" type="submit" [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty">Create
+  <button *ngIf="collectionView.mode==2 || collectionView.mode==5" type="submit"
+          [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty || collectionView.mode==5">Save
   </button>
-  <button *ngIf="collectionView.mode==1 || !collectionViewForm.form.dirty" type="button"
+  <button *ngIf="collectionView.mode==3 || collectionView.mode==6" type="submit"
+          [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty || collectionView.mode==6">Create
+  </button>
+  <button *ngIf="collectionView.mode==1 || collectionView.mode==5 || !collectionViewForm.form.dirty" type="button"
+          [disabled]="collectionView.mode==5"
           (click)="collectionView.close()">Close
   </button>
-  <button *ngIf="(collectionView.mode==2 || collectionView.mode==3) && collectionViewForm.form.dirty" type="button"
-          (click)="collectionView.discard()">Discard
+  <button
+    *ngIf="(collectionView.mode==2 || collectionView.mode==3 || collectionView.mode==6) && collectionViewForm.form.dirty"
+    type="button"
+    [disabled]="collectionView.mode==6"
+    (click)="collectionView.discard()">Discard
   </button>
 
   <!-- ######################################
@@ -80,7 +87,20 @@
   <!-- ######################################
           Collection statistics
        ###################################### -->
-  <div *ngIf="collectionView.mode!=3">
+  <div *ngIf="collectionView.mode!=3&&collectionView.mode!=6">
     <h3>Statistics</h3>
+    <div class="inputDiv">
+      <label class="statistics">Total size:</label>
+      <label class="statistics">{{collectionView.collection.statistics.totalSizeInBytes}}</label>
+    </div>
+    <div class="inputDiv">
+      <label>Number of files:</label>
+      <label>{{collectionView.collection.statistics.numberOfFiles}}</label>
+    </div>
+    <div class="inputDiv">
+      <label>Number of folders:</label>
+      <label>{{collectionView.collection.statistics.numberOfFolders}}</label>
+    </div>
   </div>
+
 </form>

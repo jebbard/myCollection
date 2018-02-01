@@ -7,10 +7,10 @@
   </div>
   <div class="row">
     <div class="badgeBotCell">
-      <button class="del" title="Delete collection" (click)="delete()" [disabled]="collectionView.mode==4">x</button>
+      <button class="del" title="Delete collection" (click)="delete()" [disabled]="collectionView.mode==4 || collectionView.mode==5">x</button>
     </div>
     <div class="statCell" title="Open collection" (click)="toggleDetails()">
-      {{collectionView.collection.statisticsSummary}}
+      {{collectionView.collection.statistics.statisticsSummary}}
     </div>
     <div class="cell" title="Open collection" (click)="toggleDetails()"></div>
   </div>

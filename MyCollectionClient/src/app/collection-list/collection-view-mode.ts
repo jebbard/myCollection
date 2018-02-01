@@ -7,6 +7,10 @@ export enum CollectionViewMode {
   EDIT = 2,
   /* Collection is still in creation */
   NEW = 3,
-  /* Collection is currently deleted */
-  IN_DELETION = 4
+  /* Collection deletion was submitted, but server did not yet return */
+  IN_DELETE = 4,
+  /* Collection change was submitted, but server did not yet return */
+  IN_UPDATE = 5,
+  /* Collection creation was submitted, but server did not yet return */
+  IN_CREATE = 6,
 }

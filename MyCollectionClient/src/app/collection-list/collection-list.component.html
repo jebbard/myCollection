@@ -1,9 +1,9 @@
-<div *ngIf="newCollectionView && newCollectionView.mode==3">
+<div *ngIf="newCollectionView && (newCollectionView.mode==3||newCollectionView.mode==6)">
   <h2>Create New Collection</h2>
   <app-collection-form [collectionView]="newCollectionView"
                        (addedColEvent)="notifyAddedCollection($event)"></app-collection-form>
 </div>
-<div *ngIf="!newCollectionView || newCollectionView.mode != 3">
+<div *ngIf="!newCollectionView || (newCollectionView.mode != 3 && newCollectionView.mode!=6)">
   <h2>My Collections</h2>
   <button class="new" title="New collection" (click)="newCollection()">New</button>
   <ul class="collection-list">
@@ -12,7 +12,7 @@
       <app-collection-header [collectionView]="collectionView"
                              (deleteColEvent)="notifyDeletedCollection($event)"
                              (toggleColEvent)="notifyToggledCollection($event)"></app-collection-header>
-      <div *ngIf="collectionView.mode!=0" class="detailsDiv">
+      <div *ngIf="collectionView.mode != 0 && collectionView.mode != 4" class="detailsDiv">
         <app-collection-form [collectionView]="collectionView"></app-collection-form>
       </div>
     </li>

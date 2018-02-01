@@ -37,3 +37,11 @@ input {
 .alert-danger {
   width: 21em;
 }
+
+label.statistics {
+  display: table-cell;
+  width: 10em;
+  vertical-align: top;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}

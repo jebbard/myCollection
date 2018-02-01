@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {CollectionView} from '../collection-list/collection-view';
 import {CollectionService} from '../services/collections/collection.service';
 import {Collection} from '../services/collections/collection';
@@ -14,7 +14,8 @@ export class CollectionHeaderComponent implements OnInit {
   @Output() deleteColEvent: EventEmitter<CollectionView> = new EventEmitter<CollectionView>();
   @Output() toggleColEvent: EventEmitter<CollectionView> = new EventEmitter<CollectionView>();
 
-  constructor(private collectionService: CollectionService) { }
+  constructor(private collectionService: CollectionService) {
+  }
 
   ngOnInit() {
   }
@@ -22,8 +23,7 @@ export class CollectionHeaderComponent implements OnInit {
   delete(): void {
     if (confirm('Do you really want to delete the collection? This will remove the index but does not delete the media files.')) {
       this.collectionView.delete();
-      this.collectionService.deleteCollection(this.collectionView.collection).subscribe();
-      this.deleteColEvent.emit(this.collectionView);
+      this.collectionService.deleteCollection(this.collectionView.collection).subscribe(() => this.deleteColEvent.emit(this.collectionView));
     }
   }
 

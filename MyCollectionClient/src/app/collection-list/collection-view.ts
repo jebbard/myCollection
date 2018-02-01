@@ -45,6 +45,6 @@ export class CollectionView {
   }
 
   delete(): void {
-    this.mode = CollectionViewMode.IN_DELETION;
+    this.mode = CollectionViewMode.IN_DELETE;
   }
 }
