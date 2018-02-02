@@ -59,13 +59,13 @@ export class CollectionListComponent implements OnInit {
       }
 
       if (this.openedCollectionView !== toggledView) {
-        this.openedCollectionView.mode = CollectionViewMode.CLOSED;
-        toggledView.mode = CollectionViewMode.VIEW;
+        this.openedCollectionView.close();
+        toggledView.open();
       } else {
         if (toggledView.mode === CollectionViewMode.VIEW) {
-          toggledView.mode = CollectionViewMode.CLOSED;
+          toggledView.close();
         } else {
-          toggledView.mode = CollectionViewMode.VIEW;
+          toggledView.open();
         }
       }
 

@@ -6,31 +6,13 @@
   <!-- ######################################
           Button toolbar
        ###################################### -->
-  <button *ngIf="collectionView.mode==1 || collectionView.mode==2 || collectionView.mode==5" type="button"
-          class="browse" [disabled]="collectionView.mode!=1">Browse
-  </button>
-  <button *ngIf="collectionView.mode==1 || collectionView.mode==2 || collectionView.mode==5" type="button"
-          (click)="synchCollection()" [disabled]="collectionView.mode!=1">Sync
-  </button>
-  <button *ngIf="collectionView.mode==1" type="button"
-          (click)="collectionView.edit()">Edit
-  </button>
-  <button *ngIf="collectionView.mode==2 || collectionView.mode==5" type="submit"
-          [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty || collectionView.mode==5">Save
-  </button>
-  <button *ngIf="collectionView.mode==3 || collectionView.mode==6" type="submit"
-          [disabled]="!collectionViewForm.form.valid || !collectionViewForm.form.dirty || collectionView.mode==6">Create
-  </button>
-  <button *ngIf="collectionView.mode==1 || collectionView.mode==5 || !collectionViewForm.form.dirty" type="button"
-          [disabled]="collectionView.mode==5"
-          (click)="collectionView.close()">Close
-  </button>
-  <button
-    *ngIf="(collectionView.mode==2 || collectionView.mode==3 || collectionView.mode==6) && collectionViewForm.form.dirty"
-    type="button"
-    [disabled]="collectionView.mode==6"
-    (click)="collectionView.discard()">Discard
-  </button>
+  <button type="button" class="browse" *ngIf="isBrowseButtonVisible()" [disabled]="!isBrowseButtonEnabled()">Browse</button>
+  <button type="button" *ngIf="isSyncButtonVisible()" [disabled]="!isSyncButtonEnabled()" (click)="synchCollection()">Sync</button>
+  <button type="button" *ngIf="isEditButtonVisible()" [disabled]="!isEditButtonEnabled()" (click)="collectionView.edit()">Edit</button>
+  <button type="submit" *ngIf="isSaveButtonVisible()" [disabled]="!isSaveButtonEnabled(collectionViewForm.form)">Save</button>
+  <button type="submit" *ngIf="isCreateButtonVisible()" [disabled]="!isCreateButtonEnabled(collectionViewForm.form)">Create</button>
+  <button type="button" *ngIf="isCloseButtonVisible(collectionViewForm.form)" [disabled]="!isCloseButtonEnabled()" (click)="collectionView.close()">Close</button>
+  <button type="button" *ngIf="isDiscardButtonVisible(collectionViewForm.form)" [disabled]="!isDiscardButtonEnabled()" (click)="collectionView.discard()">Discard</button>
 
   <!-- ######################################
           Basic properties

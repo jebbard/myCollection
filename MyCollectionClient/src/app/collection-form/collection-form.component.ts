@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter} from '@angular/core';
 import {CollectionView} from '../collection-list/collection-view';
 import {CollectionViewMode} from '../collection-list/collection-view-mode';
 import {CollectionService} from '../services/collections/collection.service';
 import {Collection} from '../services/collections/collection';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-collection-form',
@@ -15,7 +16,8 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   @Output() addedColEvent: EventEmitter<CollectionView> = new EventEmitter<CollectionView>();
   @ViewChild('input1') inputEl: ElementRef;
 
-  constructor(private collectionService: CollectionService) { }
+  constructor(private collectionService: CollectionService) {
+  }
 
   ngOnInit() {
   }
@@ -32,18 +34,83 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
     if (this.collectionView.mode === CollectionViewMode.NEW) {
       this.collectionView.mode = CollectionViewMode.IN_CREATE;
       this.collectionService.addCollection(this.collectionView.collection).subscribe(col => {
-        this.collectionView.collectionChanged(col);
-        this.collectionView.save();
+        this.collectionView.saveChanges(col);
         this.addedColEvent.emit(this.collectionView);
       });
     } else if (this.collectionView.mode === CollectionViewMode.EDIT) {
       this.collectionView.mode = CollectionViewMode.IN_UPDATE;
       this.collectionService.updateCollection(this.collectionView.collection).subscribe(col => {
-        this.collectionView.collectionChanged(this.collectionView.collection);
-        this.collectionView.save();
+        this.collectionView.saveChanges(this.collectionView.collection);
       });
     } else {
       alert('ILLEGAL STATE');
     }
+  }
+
+  isBrowseButtonVisible(): boolean {
+    return this.isBrowseButtonEnabled() ||
+      this.collectionView.mode === CollectionViewMode.EDIT ||
+      this.collectionView.mode === CollectionViewMode.IN_UPDATE;
+  }
+
+  isBrowseButtonEnabled(): boolean {
+    return this.collectionView.mode === CollectionViewMode.VIEW;
+  }
+
+  isSyncButtonVisible(): boolean {
+    return this.isBrowseButtonVisible();
+  }
+
+  isSyncButtonEnabled(): boolean {
+    return this.isBrowseButtonEnabled();
+  }
+
+  isEditButtonVisible(): boolean {
+    return this.isEditButtonEnabled();
+  }
+
+  isEditButtonEnabled(): boolean {
+    return this.collectionView.mode === CollectionViewMode.VIEW;
+  }
+
+  isSaveButtonVisible(): boolean {
+    return this.collectionView.mode === CollectionViewMode.IN_UPDATE ||
+      this.collectionView.mode === CollectionViewMode.EDIT;
+  }
+
+  isSaveButtonEnabled(form: NgForm): boolean {
+    return this.collectionView.mode !== CollectionViewMode.IN_UPDATE &&
+      form.valid && form.dirty;
+  }
+
+  isCreateButtonVisible(): boolean {
+    return this.collectionView.mode === CollectionViewMode.IN_CREATE ||
+      this.collectionView.mode === CollectionViewMode.NEW;
+  }
+
+  isCreateButtonEnabled(form: NgForm): boolean {
+    return this.collectionView.mode !== CollectionViewMode.IN_CREATE &&
+      form.valid && form.dirty;
+  }
+
+  isCloseButtonVisible(form: NgForm): boolean {
+    return this.collectionView.mode === CollectionViewMode.IN_UPDATE ||
+      (this.collectionView.mode === CollectionViewMode.EDIT && !form.dirty) ||
+      (this.collectionView.mode === CollectionViewMode.NEW && !form.dirty) ||
+      this.collectionView.mode === CollectionViewMode.VIEW;
+  }
+
+  isCloseButtonEnabled(): boolean {
+    return this.collectionView.mode !== CollectionViewMode.IN_UPDATE;
+  }
+
+  isDiscardButtonVisible(form: NgForm): boolean {
+    return this.collectionView.mode === CollectionViewMode.IN_CREATE ||
+      (this.collectionView.mode === CollectionViewMode.EDIT && form.dirty) ||
+      (this.collectionView.mode === CollectionViewMode.NEW && form.dirty);
+  }
+
+  isDiscardButtonEnabled(): boolean {
+    return this.collectionView.mode !== CollectionViewMode.IN_CREATE;
   }
 }
