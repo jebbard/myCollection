@@ -26,6 +26,10 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
     this.inputEl.nativeElement.focus();
   }
 
+  browseCollection(): void {
+    alert('Not yet implemented');
+  }
+
   synchCollection(): void {
     this.collectionService.synchronizeCollection(this.collectionView.collection).subscribe();
   }
@@ -49,8 +53,7 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
 
   isBrowseButtonVisible(): boolean {
     return this.isBrowseButtonEnabled() ||
-      this.collectionView.mode === CollectionViewMode.EDIT ||
-      this.collectionView.mode === CollectionViewMode.IN_UPDATE;
+      this.collectionView.isInUpdate();
   }
 
   isBrowseButtonEnabled(): boolean {
@@ -74,8 +77,7 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   }
 
   isSaveButtonVisible(): boolean {
-    return this.collectionView.mode === CollectionViewMode.IN_UPDATE ||
-      this.collectionView.mode === CollectionViewMode.EDIT;
+    return this.collectionView.isInUpdate();
   }
 
   isSaveButtonEnabled(form: NgForm): boolean {
@@ -84,8 +86,7 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   }
 
   isCreateButtonVisible(): boolean {
-    return this.collectionView.mode === CollectionViewMode.IN_CREATE ||
-      this.collectionView.mode === CollectionViewMode.NEW;
+    return this.collectionView.isInCreation();
   }
 
   isCreateButtonEnabled(form: NgForm): boolean {

@@ -6,7 +6,7 @@
   <!-- ######################################
           Button toolbar
        ###################################### -->
-  <button type="button" class="browse" *ngIf="isBrowseButtonVisible()" [disabled]="!isBrowseButtonEnabled()">Browse</button>
+  <button type="button" class="browse" *ngIf="isBrowseButtonVisible()" [disabled]="!isBrowseButtonEnabled()" (click)="browseCollection()">Browse</button>
   <button type="button" *ngIf="isSyncButtonVisible()" [disabled]="!isSyncButtonEnabled()" (click)="synchCollection()">Sync</button>
   <button type="button" *ngIf="isEditButtonVisible()" [disabled]="!isEditButtonEnabled()" (click)="collectionView.edit()">Edit</button>
   <button type="submit" *ngIf="isSaveButtonVisible()" [disabled]="!isSaveButtonEnabled(collectionViewForm.form)">Save</button>
@@ -20,44 +20,25 @@
   <h3>Basic properties</h3>
   <div class="inputDiv">
     <label>Name:</label>
-    <input id="collName"
-           name="collName"
-           #collName="ngModel"
-           [(ngModel)]="collectionView.collection.name"
-           placeholder="name"
-           #input1
-           [disabled]="collectionView.mode==1"
-           required/>
-    <div [hidden]="collName.valid || collName.pristine || collName.disabled"
-         class="alert alert-danger">
+    <input id="collName" name="collName" #collName="ngModel" [(ngModel)]="collectionView.collection.name"
+           placeholder="name" #input1 [disabled]="collectionView.mode==1" required/>
+    <div [hidden]="collName.valid || collName.pristine || collName.disabled" class="alert alert-danger">
       Name must not be empty
     </div>
   </div>
   <div class="inputDiv">
     <label>Root:</label>
-    <input id="collPath"
-           name="collPath"
-           #collPath="ngModel"
-           [(ngModel)]="collectionView.collection.localRootPath"
-           placeholder="path"
-           [disabled]="collectionView.mode==1"
-           required/>
-    <div [hidden]="collPath.valid || collPath.pristine || collPath.disabled"
-         class="alert alert-danger">
+    <input id="collPath" name="collPath" #collPath="ngModel" [(ngModel)]="collectionView.collection.localRootPath"
+           placeholder="path" [disabled]="collectionView.mode==1" required/>
+    <div [hidden]="collPath.valid || collPath.pristine || collPath.disabled" class="alert alert-danger">
       The root path must not be empty and must be a valid absolute path
     </div>
   </div>
   <div class="inputDiv">
     <label>Picture:</label>
-    <input id="collThumb"
-           name="collThumb"
-           #collThumb="ngModel"
-           [(ngModel)]="collectionView.collection.thumbnailLink"
-           placeholder="picture"
-           [disabled]="collectionView.mode==1"
-           required/>
-    <div [hidden]="collThumb.valid || collThumb.pristine || collThumb.disabled"
-         class="alert alert-danger">
+    <input id="collThumb" name="collThumb" #collThumb="ngModel" [(ngModel)]="collectionView.collection.thumbnailLink"
+           placeholder="picture" [disabled]="collectionView.mode==1" required/>
+    <div [hidden]="collThumb.valid || collThumb.pristine || collThumb.disabled" class="alert alert-danger">
       You must choose a picture for your collection
     </div>
   </div>

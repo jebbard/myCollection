@@ -44,4 +44,20 @@ export class CollectionView {
   delete(): void {
     this.mode = CollectionViewMode.IN_DELETE;
   }
+
+  isInCreation(): boolean {
+    return this.mode === CollectionViewMode.NEW || this.mode === CollectionViewMode.IN_CREATE;
+  }
+
+  isInUpdate(): boolean {
+    return this.mode === CollectionViewMode.EDIT || this.mode === CollectionViewMode.IN_UPDATE;
+  }
+
+  isOpened(): boolean {
+    return this.mode === CollectionViewMode.VIEW || this.isInUpdate();
+  }
+
+  isChangeInProgress(): boolean {
+    return this.mode === CollectionViewMode.IN_UPDATE || this.mode === CollectionViewMode.IN_CREATE || this.mode === CollectionViewMode.IN_DELETE;
+  }
 }

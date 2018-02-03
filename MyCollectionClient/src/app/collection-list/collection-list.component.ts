@@ -73,6 +73,10 @@ export class CollectionListComponent implements OnInit {
     }
   }
 
+  mustShowNewCollectionDialog(): boolean {
+    return this.newCollectionView && this.newCollectionView.isInCreation();
+  }
+
   newCollection(): void {
     let collection = new Collection();
     collection.statistics = new CollectionStatistics();
