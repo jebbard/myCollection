@@ -16,6 +16,12 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   @Output() addedColEvent: EventEmitter<CollectionView> = new EventEmitter<CollectionView>();
   @ViewChild('input1') inputEl: ElementRef;
 
+  pictureOptions: string[] = [
+    'Electro1',
+    'Rock1',
+    'Music1'
+  ];
+
   constructor(private collectionService: CollectionService) {
   }
 

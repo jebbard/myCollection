@@ -36,11 +36,9 @@
   </div>
   <div class="inputDiv">
     <label>Picture:</label>
-    <input id="collThumb" name="collThumb" #collThumb="ngModel" [(ngModel)]="collectionView.collection.thumbnailLink"
-           placeholder="picture" [disabled]="collectionView.mode==1" required/>
-    <div [hidden]="collThumb.valid || collThumb.pristine || collThumb.disabled" class="alert alert-danger">
-      You must choose a picture for your collection
-    </div>
+    <select id="collPict" name="collPict" [(ngModel)]="collectionView.collection.pictureType" [disabled]="collectionView.mode==1" required>
+      <option *ngFor="let pictureOption of pictureOptions" [value]="pictureOption">{{pictureOption}}</option>
+    </select>
   </div>
 
   <!-- ######################################
