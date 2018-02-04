@@ -29,7 +29,7 @@ import { CollectionFormComponent } from './collection-form/collection-form.compo
     HttpClientModule,
     AngularFilePickerModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false, delay: 3000}
+      InMemoryDataService, {dataEncapsulation: false, delay: 1600, passThruUnknownUrl: false}
     )],
   providers: [CollectionService, MessageService],
   entryComponents: [],

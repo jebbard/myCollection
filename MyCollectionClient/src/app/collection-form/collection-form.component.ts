@@ -33,11 +33,22 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   }
 
   browseCollection(): void {
+    // Todo: Implement browse
     alert('Not yet implemented');
   }
 
   synchCollection(): void {
-    this.collectionService.synchronizeCollection(this.collectionView.collection).subscribe();
+    const currentMode: CollectionViewMode = this.collectionView.mode;
+    this.collectionView.mode = CollectionViewMode.IN_SYNCHRONIZATION;
+    this.collectionService.synchronizeCollection(this.collectionView.collection).subscribe(col => {
+      this.collectionView.mode = currentMode;
+    });
+  }
+
+  cancelSynchCollection(): void {
+    this.collectionService.cancelSynchronizeCollection(this.collectionView.collection).subscribe(col => {
+      this.collectionView.mode = CollectionViewMode.VIEW;
+    });
   }
 
   submitChanges(): void {
@@ -59,27 +70,28 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
 
   isBrowseButtonVisible(): boolean {
     return this.isBrowseButtonEnabled() ||
-      this.collectionView.isInUpdate();
+      this.collectionView.isInUpdate() || this.collectionView.isInSynchronization();
   }
 
   isBrowseButtonEnabled(): boolean {
-    return this.collectionView.mode === CollectionViewMode.VIEW;
+    return this.collectionView.isViewed();
   }
 
   isSyncButtonVisible(): boolean {
-    return this.isBrowseButtonVisible();
+    return this.isSyncButtonEnabled() ||
+      this.collectionView.isInUpdate();
   }
 
   isSyncButtonEnabled(): boolean {
-    return this.isBrowseButtonEnabled();
+    return this.collectionView.isViewed();
   }
 
   isEditButtonVisible(): boolean {
-    return this.isEditButtonEnabled();
+    return this.isEditButtonEnabled() || this.collectionView.isInSynchronization();
   }
 
   isEditButtonEnabled(): boolean {
-    return this.collectionView.mode === CollectionViewMode.VIEW;
+    return this.collectionView.isViewed();
   }
 
   isSaveButtonVisible(): boolean {
@@ -100,8 +112,17 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
       form.valid && form.dirty;
   }
 
+  isCancelButtonVisible(): boolean {
+    return this.isCancelButtonEnabled();
+  }
+
+  isCancelButtonEnabled(): boolean {
+    return this.collectionView.isInSynchronization();
+  }
+
   isCloseButtonVisible(form: NgForm): boolean {
     return this.collectionView.mode === CollectionViewMode.IN_UPDATE ||
+      this.collectionView.mode === CollectionViewMode.IN_SYNCHRONIZATION ||
       (this.collectionView.mode === CollectionViewMode.EDIT && !form.dirty) ||
       (this.collectionView.mode === CollectionViewMode.NEW && !form.dirty) ||
       this.collectionView.mode === CollectionViewMode.VIEW;

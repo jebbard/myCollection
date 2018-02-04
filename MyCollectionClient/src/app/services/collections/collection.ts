@@ -5,5 +5,6 @@ export class Collection {
   name: string;
   localRootPath: string;
   pictureType: string;
+  syncStatus: number;
   statistics: CollectionStatistics;
 }

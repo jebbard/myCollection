@@ -3,7 +3,7 @@ import {Collection} from './collections/collection';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const collections = [
+    const collections: Collection[] = [
       {
         id: 1,
         name: 'Rock',
@@ -15,6 +15,7 @@ export class InMemoryDataService implements InMemoryDbService {
           totalSizeInBytes: 281818,
         },
         pictureType: 'Rock1',
+        syncStatus: undefined
       },
       {
         id: 2,
@@ -27,6 +28,7 @@ export class InMemoryDataService implements InMemoryDbService {
           totalSizeInBytes: 51818,
         },
         pictureType: 'Electro1',
+        syncStatus: undefined
       },
       {
         id: 3,
@@ -39,6 +41,7 @@ export class InMemoryDataService implements InMemoryDbService {
           totalSizeInBytes: 8909,
         },
         pictureType: 'Music1',
+        syncStatus: undefined
       }
     ];
     return {collections};

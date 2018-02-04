@@ -8,6 +8,9 @@
        ###################################### -->
   <button type="button" class="browse" *ngIf="isBrowseButtonVisible()" [disabled]="!isBrowseButtonEnabled()" (click)="browseCollection()">Browse</button>
   <button type="button" *ngIf="isSyncButtonVisible()" [disabled]="!isSyncButtonEnabled()" (click)="synchCollection()">Sync</button>
+  <button type="button" *ngIf="isCancelButtonVisible()" [disabled]="!isCancelButtonEnabled()"
+          (click)="cancelSynchCollection()">Cancel
+  </button>
   <button type="button" *ngIf="isEditButtonVisible()" [disabled]="!isEditButtonEnabled()" (click)="collectionView.edit()">Edit</button>
   <button type="submit" *ngIf="isSaveButtonVisible()" [disabled]="!isSaveButtonEnabled(collectionViewForm.form)">Save</button>
   <button type="submit" *ngIf="isCreateButtonVisible()" [disabled]="!isCreateButtonEnabled(collectionViewForm.form)">Create</button>

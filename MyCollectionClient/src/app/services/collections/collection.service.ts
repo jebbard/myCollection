@@ -27,6 +27,15 @@ export class CollectionService {
         catchError(this.handleError('getCollections', [])));
   }
 
+  getCollection(id: number): Observable<Collection> {
+    const url = `${this.collectionsUrl}/${id}`;
+
+    return this.http.get<Collection>(url)
+      .pipe(
+        tap(collection => this.log(`fetched collection w/ id=${id}`)),
+        catchError(this.handleError('getCollection', undefined)));
+  }
+
   addCollection (collection: Collection): Observable<Collection> {
     return this.http.post<Collection>(this.collectionsUrl, collection, httpOptions).pipe(
       tap((theCollection: Collection) => this.log(`added collection w/ id=${theCollection.id}`)),
@@ -61,6 +70,16 @@ export class CollectionService {
     return this.http.post<Collection>(url, httpOptions).pipe(
       tap(_ => this.log(`synchronized collection id=${id}`)),
       catchError(this.handleError<Collection>('synchronizeCollection'))
+    );
+  }
+
+  cancelSynchronizeCollection(collection: Collection): Observable<Collection> {
+    const id = collection.id;
+    const url = `${this.collectionsUrl}/${id}/cancelSynchronize`;
+
+    return this.http.post<Collection>(url, httpOptions).pipe(
+      tap(_ => this.log(`Cancelled synchronization collection id=${id}`)),
+      catchError(this.handleError<Collection>('cancelSynchronizeCollection'))
     );
   }
 

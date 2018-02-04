@@ -13,4 +13,6 @@ export enum CollectionViewMode {
   IN_UPDATE = 5,
   /* Collection creation was submitted, but server did not yet return */
   IN_CREATE = 6,
+  /* Collection synchronization was submitted, but server did not yet finish synchronization */
+  IN_SYNCHRONIZATION = 7,
 }
