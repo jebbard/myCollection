@@ -87,7 +87,7 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   }
 
   isSaveButtonEnabled(form: NgForm): boolean {
-    return this.collectionView.mode !== CollectionViewMode.IN_UPDATE &&
+    return this.collectionView.mode === CollectionViewMode.EDIT &&
       form.valid && form.dirty;
   }
 
@@ -96,7 +96,7 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   }
 
   isCreateButtonEnabled(form: NgForm): boolean {
-    return this.collectionView.mode !== CollectionViewMode.IN_CREATE &&
+    return this.collectionView.mode === CollectionViewMode.NEW &&
       form.valid && form.dirty;
   }
 
@@ -108,7 +108,7 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   }
 
   isCloseButtonEnabled(): boolean {
-    return this.collectionView.mode !== CollectionViewMode.IN_UPDATE;
+    return this.collectionView.mode === CollectionViewMode.VIEW || this.collectionView.mode === CollectionViewMode.EDIT || this.collectionView.mode === CollectionViewMode.NEW;
   }
 
   isDiscardButtonVisible(form: NgForm): boolean {
@@ -117,7 +117,8 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
       (this.collectionView.mode === CollectionViewMode.NEW && form.dirty);
   }
 
-  isDiscardButtonEnabled(): boolean {
-    return this.collectionView.mode !== CollectionViewMode.IN_CREATE;
+  isDiscardButtonEnabled(form: NgForm): boolean {
+    return this.collectionView.mode === CollectionViewMode.NEW ||
+      (this.collectionView.mode === CollectionViewMode.EDIT && form.dirty);
   }
 }

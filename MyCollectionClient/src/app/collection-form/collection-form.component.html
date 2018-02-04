@@ -12,7 +12,9 @@
   <button type="submit" *ngIf="isSaveButtonVisible()" [disabled]="!isSaveButtonEnabled(collectionViewForm.form)">Save</button>
   <button type="submit" *ngIf="isCreateButtonVisible()" [disabled]="!isCreateButtonEnabled(collectionViewForm.form)">Create</button>
   <button type="button" *ngIf="isCloseButtonVisible(collectionViewForm.form)" [disabled]="!isCloseButtonEnabled()" (click)="collectionView.close()">Close</button>
-  <button type="button" *ngIf="isDiscardButtonVisible(collectionViewForm.form)" [disabled]="!isDiscardButtonEnabled()" (click)="collectionView.discard()">Discard</button>
+  <button type="button" *ngIf="isDiscardButtonVisible(collectionViewForm.form)"
+          [disabled]="!isDiscardButtonEnabled(collectionViewForm.form)" (click)="collectionView.discard()">Discard
+  </button>
 
   <!-- ######################################
           Basic properties
@@ -21,7 +23,7 @@
   <div class="inputDiv">
     <label>Name:</label>
     <input id="collName" name="collName" #collName="ngModel" [(ngModel)]="collectionView.collection.name"
-           placeholder="name" #input1 [disabled]="collectionView.mode==1" required/>
+           placeholder="name" #input1 [disabled]="collectionView.isViewed()" required/>
     <div [hidden]="collName.valid || collName.pristine || collName.disabled" class="alert alert-danger">
       Name must not be empty
     </div>
@@ -29,14 +31,15 @@
   <div class="inputDiv">
     <label>Root:</label>
     <input id="collPath" name="collPath" #collPath="ngModel" [(ngModel)]="collectionView.collection.localRootPath"
-           placeholder="path" [disabled]="collectionView.mode==1" required/>
+           placeholder="path" [disabled]="collectionView.isViewed()" required/>
     <div [hidden]="collPath.valid || collPath.pristine || collPath.disabled" class="alert alert-danger">
       The root path must not be empty and must be a valid absolute path
     </div>
   </div>
   <div class="inputDiv">
     <label>Picture:</label>
-    <select id="collPict" name="collPict" [(ngModel)]="collectionView.collection.pictureType" [disabled]="collectionView.mode==1" required>
+    <select id="collPict" name="collPict" [(ngModel)]="collectionView.collection.pictureType"
+            [disabled]="collectionView.isViewed()" required>
       <option *ngFor="let pictureOption of pictureOptions" [value]="pictureOption">{{pictureOption}}</option>
     </select>
   </div>

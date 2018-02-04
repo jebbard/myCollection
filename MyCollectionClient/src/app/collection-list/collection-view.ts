@@ -53,8 +53,12 @@ export class CollectionView {
     return this.mode === CollectionViewMode.EDIT || this.mode === CollectionViewMode.IN_UPDATE;
   }
 
+  isViewed(): boolean {
+    return this.mode === CollectionViewMode.VIEW;
+  }
+
   isOpened(): boolean {
-    return this.mode === CollectionViewMode.VIEW || this.isInUpdate();
+    return this.isViewed() || this.isInUpdate();
   }
 
   isChangeInProgress(): boolean {
