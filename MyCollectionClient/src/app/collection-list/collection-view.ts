@@ -16,10 +16,14 @@ export class CollectionView {
     this.collection = Object.assign({}, this.originalCollection);
   }
 
-  saveChanges(changedCollection: Collection): void {
+  updateCollection(changedCollection: Collection): void {
     this.originalCollection = changedCollection;
     this.createClonedCollection();
     this.originalCollection = this.collection;
+  }
+
+  saveChanges(changedCollection: Collection): void {
+    this.updateCollection(changedCollection);
     this.mode = CollectionViewMode.VIEW;
   }
 

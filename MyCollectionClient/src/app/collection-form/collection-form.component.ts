@@ -40,8 +40,17 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   synchCollection(): void {
     const currentMode: CollectionViewMode = this.collectionView.mode;
     this.collectionView.mode = CollectionViewMode.IN_SYNCHRONIZATION;
+    const timerFunction = () => this.updateSyncStatus(this.collectionView);
+    const syncUpdateTimer = window.setInterval(timerFunction, 1000);
     this.collectionService.synchronizeCollection(this.collectionView.collection).subscribe(col => {
+      window.clearInterval(syncUpdateTimer);
       this.collectionView.mode = currentMode;
+    });
+  }
+
+  updateSyncStatus(collectionView: CollectionView): void {
+    this.collectionService.getCollection(collectionView.collection.id).subscribe(col => {
+      collectionView.updateCollection(col);
     });
   }
 

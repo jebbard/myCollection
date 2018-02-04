@@ -53,8 +53,8 @@ export class CollectionService {
     );
   }
 
-  deleteCollection (collection: Collection | number): Observable<Collection> {
-    const id = typeof collection === 'number' ? collection : collection.id;
+  deleteCollection(collection: Collection): Observable<Collection> {
+    const id = collection.id;
     const url = `${this.collectionsUrl}/${id}`;
 
     return this.http.delete<Collection>(url, httpOptions).pipe(
