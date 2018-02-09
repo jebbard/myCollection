@@ -1,4 +1,4 @@
-package com.github.mycollection.collections.api.dtos;
+package com.github.mycollection.collections.api.types;
 
 public enum PictureType {
 

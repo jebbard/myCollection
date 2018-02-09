@@ -1,4 +1,4 @@
-package com.github.mycollection.collections.api.dtos;
+package com.github.mycollection.collections.api.types;
 
 public class CollectionStatisticsDTO {
 
@@ -41,7 +41,7 @@ public class CollectionStatisticsDTO {
     *           TODO
     */
    public CollectionStatisticsDTO(Long id, int numberOfFiles, int numberOfFolders, long totalSizeInBytes,
-      String statisticsSummary, int version) {
+      String statisticsSummary, Integer version) {
       this.id = id;
       this.numberOfFiles = numberOfFiles;
       this.numberOfFolders = numberOfFolders;

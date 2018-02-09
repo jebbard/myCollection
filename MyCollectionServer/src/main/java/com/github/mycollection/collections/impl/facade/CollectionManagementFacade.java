@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.mycollection.collections.api.dtos.CollectionDTO;
-import com.github.mycollection.collections.api.dtos.CollectionStatisticsDTO;
-import com.github.mycollection.collections.api.dtos.PictureType;
 import com.github.mycollection.collections.api.services.CollectionManagementAPI;
+import com.github.mycollection.collections.api.types.CollectionDTO;
+import com.github.mycollection.collections.api.types.CollectionStatisticsDTO;
+import com.github.mycollection.collections.api.types.PictureType;
 import com.github.mycollection.collections.impl.dao.CollectionRepository;
 import com.github.mycollection.collections.impl.entities.Collection;
 import com.github.mycollection.collections.impl.entities.CollectionStatistics;
@@ -57,7 +57,9 @@ public class CollectionManagementFacade implements CollectionManagementAPI {
 
       collectionEntity = collectionRepo.save(collectionEntity);
 
-      return null;
+      collection.setVersionedEntity(collectionEntity);
+
+      return collection;
    }
 
    @Transactional(readOnly = false)

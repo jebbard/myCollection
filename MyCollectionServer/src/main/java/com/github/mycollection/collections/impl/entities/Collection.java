@@ -4,18 +4,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Version;
+
+import com.github.mycollection.utils.entity.api.types.AbstractVersionedEntity;
 
 @Entity
-public class Collection {
-
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+public class Collection extends AbstractVersionedEntity<Long, Integer> {
 
    @Column
    private String name;
@@ -32,18 +26,10 @@ public class Collection {
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
    private CollectionStatistics collectionStatistics;
 
-   @Version
-   @Column
-   private int version;
-
    /**
     * Creates a new {@link Collection}.
     */
    public Collection() {
-   }
-
-   public Long getId() {
-      return id;
    }
 
    public String getName() {
@@ -77,17 +63,12 @@ public class Collection {
     * @param collectionStatistics
     */
    public Collection(Long id, String name, String rootPath, String pictureType, Byte syncStatus,
-      CollectionStatistics collectionStatistics, int version) {
-      this.id = id;
+      CollectionStatistics collectionStatistics, Integer version) {
+      super(id, version);
       this.name = name;
       this.rootPath = rootPath;
       this.pictureType = pictureType;
       this.syncStatus = syncStatus;
       this.collectionStatistics = collectionStatistics;
-      this.version = version;
-   }
-
-   public int getVersion() {
-      return version;
    }
 }

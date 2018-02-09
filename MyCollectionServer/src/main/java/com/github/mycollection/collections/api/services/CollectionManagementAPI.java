@@ -2,7 +2,7 @@ package com.github.mycollection.collections.api.services;
 
 import java.util.List;
 
-import com.github.mycollection.collections.api.dtos.CollectionDTO;
+import com.github.mycollection.collections.api.types.CollectionDTO;
 
 public interface CollectionManagementAPI {
 	public List<CollectionDTO> getAllCollections();

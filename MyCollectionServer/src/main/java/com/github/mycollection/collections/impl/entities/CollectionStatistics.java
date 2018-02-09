@@ -2,17 +2,11 @@ package com.github.mycollection.collections.impl.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+
+import com.github.mycollection.utils.entity.api.types.AbstractVersionedEntity;
 
 @Entity
-public class CollectionStatistics {
-
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+public class CollectionStatistics extends AbstractVersionedEntity<Long, Integer> {
 
    @Column
    private int numberOfFiles;
@@ -25,10 +19,6 @@ public class CollectionStatistics {
 
    @Column
    private String statisticsSummary;
-
-   @Version
-   @Column
-   private int version;
 
    /**
     * Creates a new {@link CollectionStatistics}.
@@ -46,20 +36,11 @@ public class CollectionStatistics {
     */
    public CollectionStatistics(Long id, int numberOfFiles, int numberOfFolders, long totalSizeInBytes,
       String statisticsSummary, int version) {
-      this.id = id;
+      super(id, version);
       this.numberOfFiles = numberOfFiles;
       this.numberOfFolders = numberOfFolders;
       this.totalSizeInBytes = totalSizeInBytes;
       this.statisticsSummary = statisticsSummary;
-      this.version = version;
-   }
-
-   public int getVersion() {
-      return version;
-   }
-
-   public Long getId() {
-      return id;
    }
 
    public int getNumberOfFiles() {
