@@ -35,7 +35,7 @@ public class CollectionStatistics extends AbstractVersionedEntity<Long, Integer>
     * @param statisticsSummary
     */
    public CollectionStatistics(Long id, int numberOfFiles, int numberOfFolders, long totalSizeInBytes,
-      String statisticsSummary, int version) {
+      String statisticsSummary, Integer version) {
       super(id, version);
       this.numberOfFiles = numberOfFiles;
       this.numberOfFolders = numberOfFolders;

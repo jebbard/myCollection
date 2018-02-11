@@ -12,15 +12,6 @@ public class CollectionDTO extends AbstractVersionedTO<Long, Integer> {
    private Byte syncStatus;
    private CollectionStatisticsDTO statistics;
 
-   // statistics: {
-   // statisticsSummary: '10 albums, 203 songs',
-   // numberOfFiles: 1234,
-   // numberOfFolders: 200,
-   // totalSizeInBytes: 281818,
-   // },
-   // pictureType: 'Rock1',
-   // syncStatus: undefined
-
    /**
     * Creates a new {@link CollectionDTO}.
     * 

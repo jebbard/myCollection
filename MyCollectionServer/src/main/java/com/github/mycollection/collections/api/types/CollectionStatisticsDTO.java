@@ -1,18 +1,32 @@
 package com.github.mycollection.collections.api.types;
 
-public class CollectionStatisticsDTO {
+import com.github.mycollection.utils.entity.api.types.AbstractVersionedTO;
 
-   private Long id;
-
-   public Long getId() {
-      return id;
-   }
+public class CollectionStatisticsDTO extends AbstractVersionedTO<Long, Integer> {
 
    private int numberOfFiles;
    private int numberOfFolders;
    private long totalSizeInBytes;
    private String statisticsSummary;
-   private int version;
+
+   /**
+    * Creates a new {@link CollectionStatisticsDTO}.
+    * 
+    * @param numberOfFiles
+    * @param numberOfFolders
+    * @param totalSizeInBytes
+    * @param statisticsSummary
+    * @param version
+    *           TODO
+    */
+   public CollectionStatisticsDTO(Long id, int numberOfFiles, int numberOfFolders, long totalSizeInBytes,
+      String statisticsSummary, Integer version) {
+      super(id, version);
+      this.numberOfFiles = numberOfFiles;
+      this.numberOfFolders = numberOfFolders;
+      this.totalSizeInBytes = totalSizeInBytes;
+      this.statisticsSummary = statisticsSummary;
+   }
 
    public int getNumberOfFiles() {
       return numberOfFiles;
@@ -28,28 +42,5 @@ public class CollectionStatisticsDTO {
 
    public String getStatisticsSummary() {
       return statisticsSummary;
-   }
-
-   /**
-    * Creates a new {@link CollectionStatisticsDTO}.
-    * 
-    * @param numberOfFiles
-    * @param numberOfFolders
-    * @param totalSizeInBytes
-    * @param statisticsSummary
-    * @param version
-    *           TODO
-    */
-   public CollectionStatisticsDTO(Long id, int numberOfFiles, int numberOfFolders, long totalSizeInBytes,
-      String statisticsSummary, Integer version) {
-      this.id = id;
-      this.numberOfFiles = numberOfFiles;
-      this.numberOfFolders = numberOfFolders;
-      this.totalSizeInBytes = totalSizeInBytes;
-      this.statisticsSummary = statisticsSummary;
-   }
-
-   public int getVersion() {
-      return version;
    }
 }
