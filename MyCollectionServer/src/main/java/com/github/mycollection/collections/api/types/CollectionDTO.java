@@ -7,10 +7,19 @@ import com.github.mycollection.utils.entity.api.types.AbstractVersionedTO;
 public class CollectionDTO extends AbstractVersionedTO<Long, Integer> {
 
    private String name;
-   private Path rootPath;
+   private Path localRootPath;
    private PictureType pictureType;
    private Byte syncStatus;
-   private CollectionStatisticsDTO collectionStatistics;
+   private CollectionStatisticsDTO statistics;
+
+   // statistics: {
+   // statisticsSummary: '10 albums, 203 songs',
+   // numberOfFiles: 1234,
+   // numberOfFolders: 200,
+   // totalSizeInBytes: 281818,
+   // },
+   // pictureType: 'Rock1',
+   // syncStatus: undefined
 
    /**
     * Creates a new {@link CollectionDTO}.
@@ -20,24 +29,24 @@ public class CollectionDTO extends AbstractVersionedTO<Long, Integer> {
     * @param rootPath
     * @param pictureType
     * @param syncStatus
-    * @param collectionStatistics
+    * @param statistics
     */
    public CollectionDTO(Long id, String name, Path rootPath, PictureType pictureType, Byte syncStatus,
-      CollectionStatisticsDTO collectionStatistics, Integer version) {
+      CollectionStatisticsDTO statistics, Integer version) {
       super(id, version);
       this.name = name;
-      this.rootPath = rootPath;
+      this.localRootPath = rootPath;
       this.pictureType = pictureType;
       this.syncStatus = syncStatus;
-      this.collectionStatistics = collectionStatistics;
+      this.statistics = statistics;
    }
 
    public String getName() {
       return name;
    }
 
-   public Path getRootPath() {
-      return rootPath;
+   public Path getLocalRootPath() {
+      return localRootPath;
    }
 
    public PictureType getPictureType() {
@@ -48,7 +57,7 @@ public class CollectionDTO extends AbstractVersionedTO<Long, Integer> {
       return syncStatus;
    }
 
-   public CollectionStatisticsDTO getCollectionStatistics() {
-      return collectionStatistics;
+   public CollectionStatisticsDTO getStatistics() {
+      return statistics;
    }
 }

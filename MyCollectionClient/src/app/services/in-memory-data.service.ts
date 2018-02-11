@@ -14,7 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
           numberOfFolders: 200,
           totalSizeInBytes: 281818,
         },
-        pictureType: 'Rock1',
+        pictureType: 'ROCK1',
         syncStatus: undefined
       },
       {
@@ -27,7 +27,7 @@ export class InMemoryDataService implements InMemoryDbService {
           numberOfFolders: 2300,
           totalSizeInBytes: 51818,
         },
-        pictureType: 'Electro1',
+        pictureType: 'ELECTRO1',
         syncStatus: undefined
       },
       {
@@ -40,7 +40,7 @@ export class InMemoryDataService implements InMemoryDbService {
           numberOfFolders: 10,
           totalSizeInBytes: 8909,
         },
-        pictureType: 'Music1',
+        pictureType: 'MUSIC1',
         syncStatus: undefined
       }
     ];

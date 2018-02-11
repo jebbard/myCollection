@@ -17,9 +17,9 @@ export class CollectionFormComponent implements OnInit, AfterViewInit {
   @ViewChild('input1') inputEl: ElementRef;
 
   pictureOptions: string[] = [
-    'Electro1',
-    'Rock1',
-    'Music1'
+    'ELECTRO1',
+    'ROCK1',
+    'MUSIC1'
   ];
 
   constructor(private collectionService: CollectionService) {

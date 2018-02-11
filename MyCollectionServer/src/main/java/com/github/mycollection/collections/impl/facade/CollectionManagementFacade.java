@@ -115,8 +115,8 @@ public class CollectionManagementFacade implements CollectionManagementAPI {
    }
 
    private Collection convertToCollectionEntity(CollectionDTO collection) {
-      return new Collection(collection.getId(), collection.getName(), collection.getRootPath().toString(),
+      return new Collection(collection.getId(), collection.getName(), collection.getLocalRootPath().toString(),
          collection.getPictureType().toString(), collection.getSyncStatus(),
-         convertToCollectionStatisticsEntity(collection.getCollectionStatistics()), collection.getVersion());
+         convertToCollectionStatisticsEntity(collection.getStatistics()), collection.getVersion());
    }
 }
