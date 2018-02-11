@@ -17,7 +17,6 @@ import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.github.mycollection.collections.api.services.CollectionManagementAPI;
 import com.github.mycollection.collections.api.types.CollectionDTO;
@@ -27,7 +26,7 @@ import com.github.mycollection.collections.api.types.CollectionDTO;
  *
  */
 @Component
-@Path("/api/collections")
+@Path("/collections")
 public class CollectionManagementRessource {
 
    private CollectionManagementAPI collectionManagementAPI;
@@ -39,7 +38,6 @@ public class CollectionManagementRessource {
 
    @GET
    @Produces("application/json")
-   @CrossOrigin(origins = "http://localhost:4200")
    public List<CollectionDTO> getCollections() {
       return collectionManagementAPI.getAllCollections();
    }

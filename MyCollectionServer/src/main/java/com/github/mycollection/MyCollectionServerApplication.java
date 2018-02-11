@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.WebApplicationInitializer;
 
 import com.github.mycollection.collections.api.types.CollectionDTO;
 import com.github.mycollection.collections.api.types.CollectionStatisticsDTO;
@@ -15,7 +17,7 @@ import com.github.mycollection.collections.api.types.PictureType;
 import com.github.mycollection.collections.impl.facade.CollectionManagementFacade;
 
 @SpringBootApplication
-public class MyCollectionServerApplication {
+public class MyCollectionServerApplication extends SpringBootServletInitializer implements WebApplicationInitializer {
 
    private static final Logger log = LoggerFactory.getLogger(MyCollectionServerApplication.class);
 
