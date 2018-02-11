@@ -1,6 +1,6 @@
 /**
  *
- * {@link CollectionManagementRessource}.java
+ * {@link CollectionManagementResource}.java
  *
  * @author Jens Ebert
  *
@@ -22,12 +22,12 @@ import com.github.mycollection.collections.api.services.CollectionManagementAPI;
 import com.github.mycollection.collections.api.types.CollectionDTO;
 
 /**
- * {@link CollectionManagementRessource}
+ * {@link CollectionManagementResource}
  *
  */
 @Component
 @Path("/collections")
-public class CollectionManagementRessource {
+public class CollectionManagementResource {
 
    private CollectionManagementAPI collectionManagementAPI;
 
