@@ -9,8 +9,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class MyCollectionServerApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+   @Test
+   public void contextLoads() {
+      int x = 5;
+   }
 
 }
